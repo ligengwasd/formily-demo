@@ -44,13 +44,13 @@ const Edit: React.FC = () => {
       createDesigner({
         shortcuts: [
           new Shortcut({
-            // codes: [
-            //   [KeyCode.Meta, KeyCode.S],
-            //   [KeyCode.Control, KeyCode.S],
-            // ],
-            // handler(ctx) {
-            //   saveSchema(ctx.engine)
-            // },
+            codes: [
+              // [KeyCode.Meta, KeyCode.S],
+              // [KeyCode.Control, KeyCode.S],
+            ],
+            handler(ctx) {
+              // saveSchema(ctx.engine)
+            },
           }),
         ],
         rootComponentName: 'Form',
