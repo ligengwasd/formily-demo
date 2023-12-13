@@ -23,6 +23,7 @@
     name: 'welcome',
     icon: 'smile',
     component: './Welcome',
+    layout: false,
   },
   {
     path: '/admin',

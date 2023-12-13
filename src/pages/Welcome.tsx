@@ -1,4 +1,6 @@
 import React, { useMemo } from 'react';
+import 'antd/dist/antd.less';
+
 import {
   ComponentTreeWidget,
   CompositePanel,
@@ -26,18 +28,60 @@ import {
 import {
   Card,
   Cascader,
+  Checkbox,
+  DatePicker,
+  Field,
+  Form,
+  FormCollapse,
+  FormGrid,
   FormLayout,
+  FormTab,
+  Input,
   NumberPicker,
   ObjectContainer,
   Password,
+  Radio,
   Rate,
+  Select,
   Slider,
+  Space,
+  Switch,
+  TimePicker,
+  Transfer,
   TreeSelect,
+  Upload,
 } from '@designable/formily-antd';
 import { SettingsForm } from '@designable/react-settings-form';
 import { ArrayCards, ArrayTable } from '@designable/formily-antd/lib';
-import { createDesigner, Shortcut } from '@designable/core';
 
+import { createDesigner, Shortcut, GlobalRegistry, KeyCode } from '@designable/core';
+
+GlobalRegistry.registerDesignerLocales({
+  'zh-CN': {
+    sources: {
+      Inputs: '输入控件',
+      Layouts: '布局组件',
+      Arrays: '自增组件',
+      Displays: '展示组件',
+    },
+  },
+  'en-US': {
+    sources: {
+      Inputs: 'Inputs',
+      Layouts: 'Layouts',
+      Arrays: 'Arrays',
+      Displays: 'Displays',
+    },
+  },
+  'ko-KR': {
+    sources: {
+      Inputs: '입력',
+      Layouts: '레이아웃',
+      Arrays: '배열',
+      Displays: '디스플레이',
+    },
+  },
+});
 const Edit: React.FC = () => {
   const engine = useMemo(
     () =>
@@ -45,8 +89,8 @@ const Edit: React.FC = () => {
         shortcuts: [
           new Shortcut({
             codes: [
-              // [KeyCode.Meta, KeyCode.S],
-              // [KeyCode.Control, KeyCode.S],
+              [KeyCode.Meta, KeyCode.S],
+              [KeyCode.Control, KeyCode.S],
             ],
             handler(ctx) {
               // saveSchema(ctx.engine)
@@ -66,16 +110,28 @@ const Edit: React.FC = () => {
               <ResourceWidget
                 title="sources.Inputs"
                 sources={[
+                  Input,
                   Password,
                   NumberPicker,
                   Rate,
                   Slider,
+                  Select,
                   TreeSelect,
                   Cascader,
+                  Transfer,
+                  Checkbox,
+                  Radio,
+                  DatePicker,
+                  TimePicker,
+                  Upload,
+                  Switch,
                   ObjectContainer,
                 ]}
               />
-              <ResourceWidget title="sources.Layouts" sources={[Card, FormLayout]} />
+              <ResourceWidget
+                title="sources.Layouts"
+                sources={[Card, FormGrid, FormTab, FormLayout, FormCollapse, Space]}
+              />
               <ResourceWidget title="sources.Arrays" sources={[ArrayCards, ArrayTable]} />
               <ResourceWidget title="sources.Displays" sources={[Text]} />
             </CompositePanel.Item>
@@ -92,13 +148,36 @@ const Edit: React.FC = () => {
                 <DesignerToolsWidget />
                 <ViewToolsWidget use={['DESIGNABLE', 'JSONTREE', 'MARKUP', 'PREVIEW']} />
               </ToolbarPanel>
-              <ViewportPanel>
+              <ViewportPanel style={{ height: '100%' }}>
                 <ViewPanel type="DESIGNABLE">
                   {() => (
                     <ComponentTreeWidget
                       components={{
+                        Form,
+                        Field,
+                        Input,
+                        Select,
                         TreeSelect,
                         Cascader,
+                        Radio,
+                        Checkbox,
+                        Slider,
+                        Rate,
+                        NumberPicker,
+                        Transfer,
+                        Password,
+                        DatePicker,
+                        TimePicker,
+                        Upload,
+                        Switch,
+                        Text,
+                        Card,
+                        ArrayCards,
+                        ArrayTable,
+                        Space,
+                        FormTab,
+                        FormCollapse,
+                        FormGrid,
                         FormLayout,
                         ObjectContainer,
                       }}
